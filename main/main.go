@@ -3,6 +3,7 @@ package main
 import (
 	"crud-ws/controllers"
 	"crud-ws/models"
+	"fmt"
 	"github.com/gin-gonic/gin"
 )
 
@@ -11,6 +12,9 @@ func main() {
 
 	models.ConnectDatabase()
 
+	r.GET("/", func(context *gin.Context) {
+		fmt.Fprintln(context.Writer, "Seja bem vindo!")
+	})
 	r.GET("/books", controllers.FindBooks)
 	r.GET("/books/:id", controllers.FindBook)
 	r.POST("/books", controllers.CreateBook)
